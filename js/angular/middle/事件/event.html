@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+
+<!--
+AngularJS 有自己的 HTML 事件指令。
+1,ng-click 指令定义了 AngularJS 点击事件。
+
+ -->
+
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+<button ng-click="count = count + 1" onclick="show()">点我！</button>
+
+<p>{{ count }}</p>
+
+</div>
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.count = 0;
+});
+
+//algur js 自定义事件是不会影响原始的 HTML点击事件的
+function show(){
+  console.log('dom click');
+};
+
+</script>
+
+</body>
+</html>

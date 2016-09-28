@@ -1,0 +1,22 @@
+1,
+ng-app 指令定义一个 AngularJS 应用程序。
+ng-model 指令把元素值（比如输入域的值）绑定到应用程序。
+ng-bind 指令把应用程序数据绑定到 HTML 视图。
+
+2,
+AngularJS 一个 文件空可以存在多个ng-app吗?
+
+其默认是只加载第一个模块的 ng-app
+如果要想多个加载，需要我们手动去加载处理，加上下面脚本即可
+<script type="text/javascript">
+		var app1 = angular.module("app1",[]);
+		var app2 = angular.module("app2",[]);
+
+		angular.bootstrap(document.getElementById("A2"),['app2']);
+	</script>
+
+3, 编写格式
+<script src="mycontl.js"></script>
+
+不能写成
+<script src="mycontl.js" /> 会导致应用不到， 看debug作用域发生了变化

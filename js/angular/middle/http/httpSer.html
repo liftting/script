@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="customersCtrl">
+
+<ul>
+  <li ng-repeat="x in names">
+    {{ x.Name + ', ' + x.Country }}
+  </li>
+</ul>
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('customersCtrl', function($scope, $http) {
+    //提供的HTTP模块进行访问
+  $http.get("http://localhost:8080/ctwebser/learn/country.php")
+  .success(function (response) {
+    console.log("success");
+    $scope.names = response.records;
+  });
+
+
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+
+<!--
+
+在 AngularJS 中，服务是一个函数或对象，可在你的 AngularJS 应用中使用。
+AngularJS 内建了30 多个服务。
+有个 $location 服务，它可以返回当前页面的 URL 地址。
+
+服务有：
+$location
+$http
+$timeout
+$interval
+
+
+-->
+
+<div ng-app="myApp" ng-controller="myCtrl">
+<p> 当前页面的url:</p>
+<h3>{{ myUrl }}</h3>
+</div>
+
+<p>该实例使用了内建的 $location 服务获取当前页面的 URL。</p>
+
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl',function($scope,$location){
+
+  $scope.myUrl = $location.absUrl(); //调用其自身提供的操作
+
+
+
+});
+
+
+</script>
+
+</body>
+</html>
