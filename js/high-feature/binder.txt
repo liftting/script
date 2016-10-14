@@ -1,0 +1,14 @@
+someuser.func.bind = function(self) {
+ return this.call(self); // 就是讲这个 this 进行替换成 self对象，来进行执行
+};
+
+//将func = someuser.func.bind(foo)展开：
+func = function() {
+ return someuser.func.call(foo); // 将 someuser 替换成 foo
+};
+
+
+//再将func2 = func.bind(someuser)展开：
+func2 = function() {
+ return func.call(someuser); // 但这里的func 是没有 this的， 而 func 根本没有使用 this 指针，所以两次 bind 是没有效果的。
+}; 
