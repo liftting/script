@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+		<style>
+			div {
+				width: 400px;
+				height: 200px;
+				background: #fef4eb;
+				border: 1px solid #f60;
+				margin: 0 auto;
+			}
+			
+			input {
+				border: 0;
+				color: #fff;
+				cursor: pointer;
+				font-weight: 700;
+				background: #f60;
+				padding: 2px 4px;
+				margin: 10px 0 0 10px;
+			}
+		</style>
+
+		<script>
+			window.onload = function() {
+				var vbox = document.getElementById('box');
+				var pshow = document.getElementById('show');
+				var iput = vbox.getElementsByTagName('input');
+
+				function change(item, idx) {
+					if(idx == 0) {
+						pshow.innerText("width: " + css(oBox, "width") + "\nheight: " + css(oBox, "height") + "\nbackground-color: " + css(oBox, "backgroundColor"));
+					} else if(idx == 1) {
+						pshow.innerText("</br>");
+
+						css(vbox, {
+							width: "330px",
+							height: "100px",
+							borderColor: "#0084ff",
+							backgroundColor: "#eff8ff"
+						});
+
+						//三个参数, 属性单一设置
+						for(i = 0; i < iput.length; i++) css(iput[i], "backgroundColor", "#0084ff")
+
+					} else {
+						//两个参数, 第二个参数为对象, 属性批量设置
+						css(vbox, {
+							width: "400px",
+							height: "200px",
+							borderColor: "#f60",
+							backgroundColor: "#fef4eb"
+						});
+						//三个参数, 属性单一设置
+						for(i = 0; i < iput.length; i++) css(iput[i], "backgroundColor", "#f60")
+					}
+				}
+				
+				//这种写法有问题，始终 i=3
+				//这个是js的闭包事件问题，也就是说你看着循环绑定的事件，其实你可能只有最后一个控件才有事件绑定，其他的都没用
+				
+//				for(var i = 0; i < iput.length; i++) {
+//					iput[i].onclick = function() {
+//						change(iput[i], i);
+//					}
+//				}
+
+				// 要采用事件委托机制，来设置点击事件，
+
+
+			}
+		</script>
+
+	</head>
+
+	<body>
+
+		<div id="box">
+			<input type="button" value="Get Style" /><input type="button" value="Set Style" /><input type="button" value="Default Style" />
+			<p id='show'></p>
+		</div>
+
+	</body>
+
+</html>
