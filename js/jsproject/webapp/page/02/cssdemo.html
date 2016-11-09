@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
 		<meta charset="UTF-8">
@@ -31,11 +32,11 @@
 				var pshow = document.getElementById('show');
 				var iput = vbox.getElementsByTagName('input');
 
-				function change(item, idx) {
+				function change(idx) {
 					if(idx == 0) {
 						pshow.innerText("width: " + css(oBox, "width") + "\nheight: " + css(oBox, "height") + "\nbackground-color: " + css(oBox, "backgroundColor"));
 					} else if(idx == 1) {
-						pshow.innerText("</br>");
+						pshow.innerText("this is what");
 
 						css(vbox, {
 							width: "330px",
@@ -59,18 +60,29 @@
 						for(i = 0; i < iput.length; i++) css(iput[i], "backgroundColor", "#f60")
 					}
 				}
-				
+
 				//这种写法有问题，始终 i=3
 				//这个是js的闭包事件问题，也就是说你看着循环绑定的事件，其实你可能只有最后一个控件才有事件绑定，其他的都没用
-				
-//				for(var i = 0; i < iput.length; i++) {
-//					iput[i].onclick = function() {
-//						change(iput[i], i);
-//					}
-//				}
+
+				//				for(var i = 0; i < iput.length; i++) {
+				//					iput[i].onclick = function() {
+				//						change(iput[i], i);
+				//					}
+				//				}
 
 				// 要采用事件委托机制，来设置点击事件，
-
+				vbox.addEventListener('click', function(e) {
+					var ix = e.target;
+					if(ix.nodeName.toLowerCase() == 'input') {
+						if(ix.id == 'ip1') {
+							change(0);
+						} else if(ix.id == 'ip2') {
+							change(1);
+						} else {
+							change(2);
+						}
+					}
+				}, false);
 
 			}
 		</script>
@@ -80,7 +92,7 @@
 	<body>
 
 		<div id="box">
-			<input type="button" value="Get Style" /><input type="button" value="Set Style" /><input type="button" value="Default Style" />
+			<input type="button" value="Get Style" id="ip1" /><input type="button" value="Set Style" id="ip2" /><input type="button" value="Default Style" id="ip3" />
 			<p id='show'></p>
 		</div>
 

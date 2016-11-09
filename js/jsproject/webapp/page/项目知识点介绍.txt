@@ -1,0 +1,18 @@
+
+
+
+
+
+
+03/rousel： 这个项目是实现了 轮播的效果，而且是使用 类的实现方式  来处理的，
+原理是通过移动内部布局来展示效果
+1, css 中，overflow: hidden 设置了 ，父容器 子布局宽高一样，所以直接就将其他的给盖住了，
+2，position: absolute   这个是保证排列是在绝对的位置，不是浮动的
+3， ul li 默认li是垂直排列的，那么要水平排列，修改li 的属性， float:left 即可
+4，that.vUl.style.left = iTarget + "px"; //设置左边距，   left top right 这都是距离容器边距的距离属性配置， 注意要设置 px后面添加上
+
+问题，水平排列有问题，
+offsetLeft
+left
+解决：
+width: 300%; /*浮动起来，要设置宽度 几个就是3备*/
